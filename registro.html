@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Clientes</title>
+
+    <!--link rel="stylesheet" href="estilos.css"-->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<script type="text/javascript">
+    function ConfirmRegistro() {
+        var rpta = confirm("Seguro que deseas reservar");
+        if (rpta == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+</script>
+<body>
+
+    <!--form action="registrar.php" method="post">
+
+        <h1>Reserva de Clientes</h1>
+        <label for="">Nombres</label>
+        <input type="text" placeholder=" Escriba su Nombres" name="nombres" required>
+        <br>
+        <label for="">Apellidos</label>
+        <input type="text" placeholder=" Escriba su Apellidos" name="apellidos" required>
+        <br>
+        <label for="">Celular</label>
+        <input type="text" placeholder=" Escriba su Celular" name="celular" required>
+        <br>
+        <label for="">Servicio</label>
+        <input type="text" placeholder=" Escriba el servicio que te gustaria" name="servicio" required>
+        <br>
+        <label for="">Nro de Personas para reservar</label>
+        <input type="text" placeholder=" Escriba cantidad de personas" name="cant_pers" required>
+        <br>
+        <label for="">Fecha de reserva</label>
+        <input type="date" placeholder=" Escriba fecha de reserva en formato Año-mes-dia: 2024-02-15" name="fecha_reserva" required>
+
+        <br>
+        </div>
+        <div style="text-align: center;">
+            <button  onclick="return ConfirmRegistro()">
+                <!-a href="index.php" class="boton-redireccion">Reservar</a>
+            <input type="submit" value="Reservar" href="index.php">
+            </button>
+        </div>
+
+
+    </form-->
+
+    <form class="row g-3">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail4">
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Password</label>
+          <input type="password" class="form-control" id="inputPassword4">
+        </div>
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="col-12">
+          <label for="inputAddress2" class="form-label">Address 2</label>
+          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="col-md-6">
+          <label for="inputCity" class="form-label">City</label>
+          <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">State</label>
+          <select id="inputState" class="form-select">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label for="inputZip" class="form-label">Zip</label>
+          <input type="text" class="form-control" id="inputZip">
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+      </form>
+
+
+</body>
+
+</html>

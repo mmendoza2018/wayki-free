@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Clientes</title>
+
+    <link rel="stylesheet" href="estilos.css">
+
+</head>
+<script type="text/javascript">
+    function ConfirmRegistro() {
+        var rpta = confirm("Seguro que deseas reservar");
+        if (rpta == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+</script>
+<body>
+
+    <form action="registrar.php" method="post">
+
+        <h1>Reserva de Clientes</h1>
+        <label for="">Nombres</label>
+        <input type="text" placeholder=" Escriba su Nombres" name="nombres" required>
+        <br>
+        <label for="">Apellidos</label>
+        <input type="text" placeholder=" Escriba su Apellidos" name="apellidos" required>
+        <br>
+        <label for="">Celular</label>
+        <input type="text" placeholder=" Escriba su Celular" name="celular" required>
+        <br>
+        <label for="">Servicio</label>
+        <input type="text" placeholder=" Escriba el servicio que te gustaria" name="servicio" required>
+        <br>
+        <label for="">Nro de Personas para reservar</label>
+        <input type="text" placeholder=" Escriba cantidad de personas" name="cant_pers" required>
+        <br>
+        <label for="">Fecha de reserva</label>
+        <input type="text" placeholder=" Escriba fecha de reserva en formato Año-mes-dia: 2024-02-15" name="fecha_reserva" required>
+
+        <br>
+        </div>
+        <div style="text-align: center;">
+            <button  onclick="return ConfirmRegistro()">
+                <!--a href="index.php" class="boton-redireccion">Reservar</a-->
+            <input type="submit" value="Reservar" href="index.php">
+            </button>
+        </div>
+
+
+    </form>
+
+
+</body>
+
+</html>
