@@ -153,6 +153,7 @@
                 method: "POST",
                 body: data
             });
+            
             let response = await res.json();
 
             if (response[0]) {

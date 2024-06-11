@@ -4,11 +4,11 @@ $conexion = mysqli_connect("localhost", "root", "", "waiky");
 
 $arrayDataGlobal = [];
 /* total servicios */
-$resReservas = mysqli_query($conexion, "SELECT * FROM reservas");
+$resReservas = mysqli_query($conexion, "SELECT * FROM reservas WHERE estado_reserva = 1");
 $arrayDataServicios = [];
 
 /*  lista e reservas */
-$resServicios = mysqli_query($conexion, "SELECT * FROM servicios");
+$resServicios = mysqli_query($conexion, "SELECT * FROM servicios WHERE estado_servicio = 1");
 $arrayServicios = [];
 //alamacenamos los servicios en una arreglo
 foreach ($resServicios as $servicio) {
@@ -93,10 +93,53 @@ for ($i = 6; $i >= 0; $i--) {
 }
 
 foreach ($ultimosDias as $fecha) {
-    $responseFecha = mysqli_query($conexion, "SELECT COUNT(fecha_reserva) as total FROM reservas WHERE fecha_reserva = '$fecha'");
+    $responseFecha = mysqli_query($conexion, "SELECT COUNT(fecha_reserva) as total FROM reservas WHERE fecha_reserva = '$fecha' AND estado_reserva = 1");
     $totalRegistrosPorDIa = mysqli_fetch_assoc($responseFecha)["total"];
     array_push($ultimosDiasData, $totalRegistrosPorDIa);
 }
+
+
+// Array para almacenar las fechas de los últimos días
+$arrayMeses = array(
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre"
+);
+
+$arrayMesesData = [];
+
+
+foreach ($arrayMeses as $index => $mes) {
+    // Obtener el número del mes (index + 1 porque el array es 0-indexado)
+    $mesNumero = $index + 1;
+
+    // Consulta para contar las reservas en un mes específico
+    $query = "SELECT COUNT(*) as total 
+              FROM reservas 
+              WHERE MONTH(fecha_reserva) = $mesNumero 
+              AND estado_reserva = 1";
+              
+    $responseFecha = mysqli_query($conexion, $query);
+
+    if ($responseFecha) {
+        $totalRegistrosPorMes = mysqli_fetch_assoc($responseFecha)["total"];
+    } else {
+        $totalRegistrosPorMes = 0; // Si la consulta falla, establece el total a 0
+    }
+
+    // Almacenar el resultado en el array
+    array_push($arrayMesesData, $totalRegistrosPorMes);
+}
+
 
 
 $arrayDataGlobal = [
@@ -107,6 +150,10 @@ $arrayDataGlobal = [
     "graficoBarras" => [
         "dias" => $ultimosDias,
         "data" => $ultimosDiasData,
+    ],
+    "graficoBarrasPorMes" => [
+        "meses" => $arrayMeses,
+        "data" => $arrayMesesData,
     ]
 ];
 
