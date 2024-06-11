@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-06-2024 a las 08:35:08
+-- Tiempo de generación: 11-06-2024 a las 06:11:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -44,7 +44,7 @@ INSERT INTO `chatbot` (`id`, `tipo_destino`, `destino_id`, `queries`, `replies`,
 (1, NULL, NULL, 'Hola, me podrías indicar que servicios tiene?', 'Claro, estoy para servirle, que servicio te gustaria? Tenemos: <br> \n1. Apus y Montañas <br>\n2. Rutas y Aventuras <br>\n3. Tours Convencionales <br>\n4. Paquetes Escolares <br>\nElige un numero', 0),
 (2, NULL, NULL, 'Me gustaria el servicio de Apus y Montañas', 'Ok, tenemos varios tipos de ascenso y son: \n1. Misti \n2. Chachani \n3. Pichu Pichu\n4. Coropuna\n5. Mismi\n6. Hualca Hualca \nCual te gustaría? Elige una letra ', 0),
 (3, NULL, NULL, '1. Misti, me gustaría saber que tipos tienes', 'Tenemos dos rutas: <br>\n1.1 Aguada Blanca <br>\n1.2 Ruta Sur Chiguata<br>\nElige un numero', 0),
-(4, 'SUBCATEGORIA', 1, '1.1 aguada Blanca, en que consiste?', 'Consiste en: \r\nMODALIDAD	 : Montaña.\r\nDIFICULTAD	  	 : Fácil a media (Enero a abril Lluvias / \r\nMayo a Diciembre temporada seca)\r\nDURACIÓN     	: 02 Días y 01 Noche\r\nCOSTO POR PAX: S/350.00\r\nSALIDAS               : Todo el año\r\n\r\nRECORRIDO        : 15Km,  (9.5 millas)\r\nEl costo es de : S/. 350', 1),
+(4, 'SUBCATEGORIA', 1, '1.1 aguada Blanca, en que consiste?', 'Consiste en: \nMODALIDAD	 : Montaña.\nDIFICULTAD	  	 : Fácil a media (Enero a abril Lluvias / \nMayo a Diciembre temporada seca)\nDURACIÓN     	: 02 Días y 01 Noche\nCOSTO POR PAX: S/350.00\nSALIDAS               : Todo el año\n\nRECORRIDO        : 15Km,  (9.5 millas)\nEl costo es de : S/. 350', 1),
 (5, 'SUBCATEGORIA', 2, '1.2 ruta sur Chiguata en que consiste', 'Consiste en:\r\nMODALIDAD	: Montaña.\r\nDIFICULTAD	  	: Fácil a media (Enero a abril Lluvias / \r\nMayo a Diciembre temporada seca)\r\nDURACIÓN     	: 02 días / 01 noche\r\nCOSTO POR PAX: S/300.00\r\nSALIDAS              : Todo el año', 1),
 (6, NULL, NULL, 'quiero reservar', 'Si deseas reservar registrate en el siguiente link:\r\nhttp://localhost/chatbot2_wayki/registro.html\r\n', 0),
 (7, NULL, NULL, '2. Chachani', 'Tenemos dos opciones para ascenso Volcán al Chachani:\r\na. 1 día\r\nb. 2 días\r\ncual te gustaría elige uno', 0),
@@ -67,23 +67,33 @@ CREATE TABLE `clientes` (
   `id` int(11) NOT NULL,
   `nombres` varchar(250) NOT NULL,
   `correo` varchar(250) NOT NULL,
-  `celular` varchar(250) NOT NULL
+  `celular` varchar(250) NOT NULL,
+  `estado_cliente` tinyint(4) DEFAULT 1,
+  `fecha_registro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id`, `nombres`, `correo`, `celular`) VALUES
-(1, 'Miguel Mendoza', 'miguel@gmail.com', '4535345'),
-(2, 'Voluptatem Et duis ', 'vyfet@mailinator.com', 'Temporibus ad illum'),
-(3, 'jaime chincha', 'jaime@mailinator.com', '5345345'),
-(4, 'nombre prueba', 'nifemeha@mailinator.com', '936983242'),
-(5, 'pepe', 'pepe@gmil.no', '34'),
-(6, 'jacienta', 'jacienta@dgf.cpo', '5345'),
-(7, 'nombre prueba', 'vocac@mailinator.com', '645'),
-(8, 'caro', 'caro@gmilfsd.com', '3453'),
-(9, 'roxi perez', 'roxi@roxi.com', '534554');
+INSERT INTO `clientes` (`id`, `nombres`, `correo`, `celular`, `estado_cliente`, `fecha_registro`) VALUES
+(1, 'Miguel Mendoza', 'miguel@gmail.com', '4535345', 0, '2024-06-10 19:15:15'),
+(2, 'Voluptatem Et duis ', 'vyfet@mailinator.com', 'Temporibus ad illum', 1, '2024-06-10 19:15:15'),
+(3, 'jaime chincha', 'jaime@mailinator.com', '5345345', 1, '2024-06-10 19:15:15'),
+(4, 'nombre prueba', 'nifemeha@mailinator.com', '936983242', 1, '2024-06-10 19:15:15'),
+(5, 'pepe', 'pepe@gmil.no', '34', 1, '2024-06-10 19:15:15'),
+(6, 'jacinta', 'jacienta@dgf.cpo', '5345', 1, '2024-06-10 19:15:15'),
+(7, 'nombre prueba', 'vocac@mailinator.com', '645', 1, '2024-06-10 19:15:15'),
+(8, 'caro', 'caro@gmilfsd.com', '3453', 1, '2024-06-10 19:15:15'),
+(9, 'roxi perez', 'roxi@roxi.com', '534554', 1, '2024-06-10 19:15:15'),
+(10, ' gabriel quispe', 'gabriel@gmail.com', '4545645', 1, '2024-06-10 19:15:15'),
+(11, 'tre6456', '456456', '45646', 1, '2024-06-10 19:15:15'),
+(12, 'mogu', '456456', '45646', 1, '2024-06-10 19:15:15'),
+(13, 'daysi xd', 'daysi@gmail.com', '43253', 1, '2024-06-10 19:15:15'),
+(14, 'ramiro', 'Eum est voluptate i', 'Et expedita in in en', 1, '2024-06-10 19:15:15'),
+(15, 'Miguel Mendoza perez', 'sf@gmail.com', '8787786', 1, '2024-06-10 19:15:15'),
+(16, 'carlos torres', 'sf@gmail.com', '6456', 1, '2024-06-10 19:15:15'),
+(17, 'carmen perez ramires', 'carmen@gmail.com', '86464654', 0, '2024-06-10 22:41:56');
 
 -- --------------------------------------------------------
 
@@ -117,21 +127,27 @@ CREATE TABLE `reservas` (
   `id_cliente` int(11) NOT NULL,
   `num_personas` int(11) NOT NULL,
   `fecha_reserva` date NOT NULL,
-  `fecha_actual` datetime DEFAULT current_timestamp()
+  `fecha_registro` datetime DEFAULT current_timestamp(),
+  `estado_reserva` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `reservas`
 --
 
-INSERT INTO `reservas` (`id`, `id_servicio_categoria`, `id_servicio_subcategoria`, `id_cliente`, `num_personas`, `fecha_reserva`, `fecha_actual`) VALUES
-(1, NULL, 1, 1, 2, '2024-06-08', '2024-06-08 12:30:59'),
-(10, NULL, 1, 7, 34, '0000-00-00', '2024-06-08 22:28:29'),
-(11, NULL, 2, 5, 2, '0000-00-00', '2024-06-09 00:42:30'),
-(12, NULL, 1, 1, 5, '0000-00-00', '2024-06-09 01:17:07'),
-(13, NULL, 1, 8, 5, '2024-06-07', '2024-06-09 01:18:19'),
-(14, NULL, 1, 9, 5, '2024-06-05', '2024-06-09 01:27:46'),
-(15, NULL, 1, 9, 9, '2024-06-05', '2024-06-09 01:31:57');
+INSERT INTO `reservas` (`id`, `id_servicio_categoria`, `id_servicio_subcategoria`, `id_cliente`, `num_personas`, `fecha_reserva`, `fecha_registro`, `estado_reserva`) VALUES
+(1, NULL, 1, 1, 2, '2024-06-08', '2024-06-08 12:30:59', 1),
+(10, NULL, 1, 7, 34, '2024-04-07', '2024-06-08 22:28:29', 1),
+(11, NULL, 2, 5, 2, '2024-03-07', '2024-06-09 00:42:30', 1),
+(12, NULL, 1, 1, 5, '2024-04-07', '2024-06-09 01:17:07', 1),
+(13, NULL, 1, 8, 5, '2024-06-07', '2024-06-09 01:18:19', 1),
+(14, NULL, 1, 9, 5, '2024-06-05', '2024-06-09 01:27:46', 1),
+(15, NULL, 1, 9, 9, '2024-06-05', '2024-06-09 01:31:57', 1),
+(16, NULL, 1, 10, 2, '2024-06-09', '2024-06-09 15:58:31', 1),
+(17, NULL, 1, 10, 3, '2024-06-09', '2024-06-09 16:00:21', 1),
+(18, 2, 2, 2, 2, '2024-06-09', '2024-06-10 18:20:10', 1),
+(19, NULL, 6, 2, 10, '1999-04-25', '2024-06-10 19:09:07', 0),
+(20, 1, NULL, 5, 4, '2024-06-10', '2024-06-10 22:51:04', 1);
 
 -- --------------------------------------------------------
 
@@ -142,20 +158,22 @@ INSERT INTO `reservas` (`id`, `id_servicio_categoria`, `id_servicio_subcategoria
 CREATE TABLE `servicios` (
   `id` int(11) NOT NULL,
   `descripcion` varchar(250) NOT NULL,
-  `tipo` varchar(250) NOT NULL,
-  `cantidad_max_personas` int(11) NOT NULL,
-  `precio` int(11) NOT NULL
+  `fecha_registro` datetime DEFAULT current_timestamp(),
+  `estado_servicio` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `servicios`
 --
 
-INSERT INTO `servicios` (`id`, `descripcion`, `tipo`, `cantidad_max_personas`, `precio`) VALUES
-(1, 'Apus y Montañas', '-', 15, 1500),
-(2, 'Rutas y Aventuras', '-', 1, 1),
-(3, 'Tours Convencionales', '-', 1, 1),
-(4, 'Paquetes Escolares', '-', 1, 4);
+INSERT INTO `servicios` (`id`, `descripcion`, `fecha_registro`, `estado_servicio`) VALUES
+(1, 'Apus y Montañas', '2000-01-27 00:00:00', 1),
+(2, 'Rutas y Aventuras', '2000-01-27 00:00:00', 1),
+(3, 'Tours Convencionales', '2000-01-27 00:00:00', 1),
+(4, 'Paquetes Escolares', '2000-01-27 00:00:00', 1),
+(6, 'a paris', '2000-01-27 00:00:00', 1),
+(7, 'lima', '2000-01-27 00:00:00', 0),
+(8, 'servicio nuevo 01', '2024-06-10 22:43:43', 0);
 
 -- --------------------------------------------------------
 
@@ -169,19 +187,25 @@ CREATE TABLE `servicios_categorias` (
   `titulo` varchar(250) NOT NULL,
   `descripcion` text NOT NULL,
   `precio` int(11) NOT NULL,
-  `cantidad_max_personas` int(11) NOT NULL
+  `cantidad_max_personas` int(11) NOT NULL,
+  `fecha_registro` datetime NOT NULL DEFAULT current_timestamp(),
+  `esstado_ser_categoria` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `servicios_categorias`
 --
 
-INSERT INTO `servicios_categorias` (`id`, `servicio_id`, `titulo`, `descripcion`, `precio`, `cantidad_max_personas`) VALUES
-(1, 1, 'Misti', '-', 1500, 1200),
-(2, 1, 'Chachani', '-', 1500, 1500),
-(5, 1, 'Pichu Pichu', '-', 1500, 1500),
-(6, 1, 'Coropuna', '-', 1500, 1500),
-(8, 1, 'viaje de prueba', '-', 1500, 12);
+INSERT INTO `servicios_categorias` (`id`, `servicio_id`, `titulo`, `descripcion`, `precio`, `cantidad_max_personas`, `fecha_registro`, `esstado_ser_categoria`) VALUES
+(1, 1, 'Misti', '-', 1500, 1200, '2024-06-10 19:16:13', 1),
+(2, 1, 'Chachani', '-', 1500, 1500, '2024-06-10 19:16:13', 1),
+(5, 1, 'Pichu Pichu', '-', 1500, 1500, '2024-06-10 19:16:13', 1),
+(6, 1, 'Coropuna', '-', 1500, 1500, '2024-06-10 19:16:13', 1),
+(8, 1, 'viaje de prueba', '-', 1500, 12, '2024-06-10 19:16:13', 1),
+(10, 4, 'Aut cupidatat qui om', '', 0, 0, '2024-06-10 19:16:13', 1),
+(11, 3, 'Temporibus corrupti', '', 85, 39, '2024-06-10 19:16:13', 1),
+(12, 2, 'Maiores aut numquam ', '', 34, 12, '2024-06-10 19:16:13', 1),
+(13, 3, 'titulo', 'descripcino :)', 27, 45, '2024-06-10 19:16:13', 0);
 
 -- --------------------------------------------------------
 
@@ -195,20 +219,24 @@ CREATE TABLE `servicios_subcategorias` (
   `titulo` varchar(250) NOT NULL,
   `descripcion` text NOT NULL,
   `cantidad_max_personas` int(11) NOT NULL,
-  `precio` int(11) NOT NULL
+  `precio` int(11) NOT NULL,
+  `fecha_registro` tinyint(4) NOT NULL DEFAULT current_timestamp(),
+  `esstado_ser_subcategoria` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `servicios_subcategorias`
 --
 
-INSERT INTO `servicios_subcategorias` (`id`, `servicio_cat_id`, `titulo`, `descripcion`, `cantidad_max_personas`, `precio`) VALUES
-(1, 1, 'Ruta aguada blanca', 'MODALIDAD	 : Montaña.\r\nDIFICULTAD	  	 : Fácil a media (Enero a abril Lluvias / \r\n\r\nMayo a Diciembre temporada seca)\r\nDURACIÓN     	: 02 Días y 01 Noche\r\n\r\nSALIDAS               : Todo el año\r\n\r\nRECORRIDO        : 15Km,  (9.5 millas)', 15, 350),
-(2, 1, 'Sur chiguata', 'MODALIDAD	: Montaña.\r\nDIFICULTAD	  	: Fácil a media (Enero a abril Lluvias / \r\n\r\nMayo a Diciembre temporada seca)\r\nDURACIÓN     	: 02 días / 01 noche\r\n\r\nSALIDAS              : Todo el año', 10, 300),
-(3, 2, 'VOLCÁN CHACHANI (1 día)', 'MODALIDAD		: Montaña.\r\nDIFICULTAD	        : Fácil a media (Enero a abril Lluvias/ Mayo a Diciembre temporada seca)\r\nDURACIÓN		: 01 Día', 10, 330),
-(4, 2, 'VOLCÁN CHACHANI (2 días)', 'MODALIDAD		: Montaña.\r\nDIFICULTAD		 : Fácil a media (Enero a abril Lluvias/ Mayo a Diciembre temporada seca)\r\nDURACIÓN 		 : 02 Días y 01 noche\r\n\r\nRECORRIDO	       :  10 km.  (6.213 Millas)', 15, 350),
-(5, 5, 'CUMBRE MONTE BLANCO (5,470 Msnm)', 'MODALIDAD     	  : Montaña - Visita Ecológica.\r\nDIFICULTAD      	 : Moderada a  Fácil.\r\nDURACIÓN             : 01 Día.\r\n\r\nRECORRIDO           :7 KM  (3.728 millas)', 5, 170),
-(6, 6, 'RUTA SUR (6,425 Msnm)', 'MODALIDAD : Alta Montaña.\r\nDIFICULTAD   : Técnico a difícil (Enero a Abril temporada de lluvias / Mayo a Diciembre temporada seca)\r\nDURACIÓN     : 02 Días y 02 noches\r\n\r\nRECORRIDO   :  15 km.  (12.213 Millas)', 15, 850);
+INSERT INTO `servicios_subcategorias` (`id`, `servicio_cat_id`, `titulo`, `descripcion`, `cantidad_max_personas`, `precio`, `fecha_registro`, `esstado_ser_subcategoria`) VALUES
+(1, 1, 'Ruta aguada blanca 01', 'MODALIDAD	 : Montaña.\r\nDIFICULTAD	  	 : Fácil a media (Enero a abril Lluvias / \r\n\r\nMayo a Diciembre temporada seca)\r\nDURACIÓN     	: 02 Días y 01 Noche\r\n\r\nSALIDAS               : Todo el año\r\n\r\nRECORRIDO        : 15Km,  (9.5 millas)', 15, 350, 127, 1),
+(2, 1, 'Sur chiguata', 'MODALIDAD	: Montaña.\r\nDIFICULTAD	  	: Fácil a media (Enero a abril Lluvias / \r\n\r\nMayo a Diciembre temporada seca)\r\nDURACIÓN     	: 02 días / 01 noche\r\n\r\nSALIDAS              : Todo el año', 10, 300, 127, 1),
+(3, 2, 'VOLCÁN CHACHANI (1 día)', 'MODALIDAD		: Montaña.\r\nDIFICULTAD	        : Fácil a media (Enero a abril Lluvias/ Mayo a Diciembre temporada seca)\r\nDURACIÓN		: 01 Día', 10, 330, 127, 1),
+(4, 2, 'VOLCÁN CHACHANI (2 días)', 'MODALIDAD		: Montaña.\r\nDIFICULTAD		 : Fácil a media (Enero a abril Lluvias/ Mayo a Diciembre temporada seca)\r\nDURACIÓN 		 : 02 Días y 01 noche\r\n\r\nRECORRIDO	       :  10 km.  (6.213 Millas)', 15, 350, 127, 1),
+(5, 5, 'CUMBRE MONTE BLANCO (5,470 Msnm)', 'MODALIDAD     	  : Montaña - Visita Ecológica.\r\nDIFICULTAD      	 : Moderada a  Fácil.\r\nDURACIÓN             : 01 Día.\r\n\r\nRECORRIDO           :7 KM  (3.728 millas)', 5, 170, 127, 1),
+(6, 6, 'RUTA SUR (6,425 Msnm)', 'MODALIDAD : Alta Montaña.\r\nDIFICULTAD   : Técnico a difícil (Enero a Abril temporada de lluvias / Mayo a Diciembre temporada seca)\r\nDURACIÓN     : 02 Días y 02 noches\r\n\r\nRECORRIDO   :  15 km.  (12.213 Millas)', 15, 850, 127, 1),
+(10, 13, 'title', 'Hic omnis culpa dic', 27, 32, 127, 0),
+(11, 5, 'ruta a salinas', '-', 5, 1800, 127, 1);
 
 -- --------------------------------------------------------
 
@@ -338,7 +366,7 @@ ALTER TABLE `chatbot`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
@@ -350,25 +378,25 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios_categorias`
 --
 ALTER TABLE `servicios_categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios_subcategorias`
 --
 ALTER TABLE `servicios_subcategorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
