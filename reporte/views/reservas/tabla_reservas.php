@@ -40,6 +40,9 @@ $reservas = mysqli_query($conexion, $sql);
                         <td><?= $reserva["fecha_registro"] ?></td>
                         <td>
                             <a href="#" data-toggle="modal" data-target="#updateModal" onclick="obtenerReserva('<?= $reserva['idReserva'] ?>')" class="btn btn-warning">Actualizar</a>
+                            <a href="#" data-toggle="modal" data-target="#pdfModal" onclick="generarPdf('<?= $reserva['idReserva'] ?>')" class="btn btn-danger">
+                            <i class="fa-solid fa-file"></i>
+                            </a>
                         </td>
                     </tr>
                 <?php endforeach ?>
@@ -98,6 +101,26 @@ $reservas = mysqli_query($conexion, $sql);
                             <button type="submit" class="btn btn-success mt-2">Guardar</button>
                         </div>
                     </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal PDF -->
+    <div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="pdfReserva">
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -104,7 +104,7 @@ const obtenerClientes = async (id) => {
 
     let res = await fetch(`clientes/data.php?id=${id}`);
     let response = await res.json();
-    
+
     document.getElementById("idAct").value = response.id;
     document.getElementById("nombresAct").value = response.nombres;
     document.getElementById("correoAct").value = response.correo;
@@ -125,7 +125,7 @@ const actualizarCliente = async (formulario) => {
         alertaPersonalizada("success", response[1])
         $("#updateModal").modal("hide");
         setTimeout(() => {
-            CargarContenido('content-wrapper',"clientes/tabla_clientes.php");
+            CargarContenido('content-wrapper', "clientes/tabla_clientes.php");
         }, 500);
     } else {
         alertaPersonalizada("error", response[1])
@@ -159,11 +159,11 @@ const obtenerServicio = async (id) => {
 
     let res = await fetch(`servicios/data.php?id=${id}`);
     let response = await res.json();
-    
+
     document.getElementById("idAct").value = response.id;
     document.getElementById("descripcionAct").value = response.descripcion;
     document.getElementById("estadoAct").value = 1;
-    
+
 }
 
 const actualizarServicio = async (formulario) => {
@@ -178,7 +178,7 @@ const actualizarServicio = async (formulario) => {
         alertaPersonalizada("success", response[1])
         $("#updateModal").modal("hide");
         setTimeout(() => {
-            CargarContenido('content-wrapper',"servicios/tabla_servicios.php");
+            CargarContenido('content-wrapper', "servicios/tabla_servicios.php");
         }, 500);
     } else {
         alertaPersonalizada("error", response[1])
@@ -209,7 +209,7 @@ const agregarCategoriaServicio = async (formulario) => {
 const obtenerCategoriaServicio = async (id) => {
     let res = await fetch(`categoria_servicios/data.php?id=${id}`);
     let response = await res.json();
-    
+
     document.getElementById("idAct").value = response.id;
     document.getElementById("tituloAct").value = response.titulo;
     document.getElementById("servicio_idAct").value = response.servicio_id;
@@ -217,7 +217,7 @@ const obtenerCategoriaServicio = async (id) => {
     document.getElementById("precioAct").value = response.precio;
     document.getElementById("cantidad_max_personasAct").value = response.cantidad_max_personas;
     document.getElementById("estadoAct").value = 1;
-    
+
 }
 
 const actualizarCategoriaServicio = async (formulario) => {
@@ -232,7 +232,7 @@ const actualizarCategoriaServicio = async (formulario) => {
         alertaPersonalizada("success", response[1])
         $("#updateModal").modal("hide");
         setTimeout(() => {
-            CargarContenido('content-wrapper',"categoria_servicios/tabla_cat_servicios.php");
+            CargarContenido('content-wrapper', "categoria_servicios/tabla_cat_servicios.php");
         }, 500);
     } else {
         alertaPersonalizada("error", response[1])
@@ -264,7 +264,7 @@ const agregarSubCategoriaServicio = async (formulario) => {
 const obtenerSubCategoriaServicio = async (id) => {
     let res = await fetch(`subcategoria_servicios/data.php?id=${id}`);
     let response = await res.json();
-    
+
     document.getElementById("idAct").value = response.id;
     document.getElementById("tituloAct").value = response.titulo;
     document.getElementById("servicio_cat_idAct").value = response.servicio_cat_id;
@@ -272,7 +272,7 @@ const obtenerSubCategoriaServicio = async (id) => {
     document.getElementById("precioAct").value = response.precio;
     document.getElementById("cantidad_max_personasAct").value = response.cantidad_max_personas;
     document.getElementById("estadoAct").value = 1;
-    
+
 }
 
 const actualizarSubCategoriaServicio = async (formulario) => {
@@ -287,7 +287,7 @@ const actualizarSubCategoriaServicio = async (formulario) => {
         alertaPersonalizada("success", response[1])
         $("#updateModal").modal("hide");
         setTimeout(() => {
-            CargarContenido('content-wrapper',"subcategoria_servicios/tabla_subcat_servicios.php");
+            CargarContenido('content-wrapper', "subcategoria_servicios/tabla_subcat_servicios.php");
         }, 500);
     } else {
         alertaPersonalizada("error", response[1])
@@ -320,15 +320,15 @@ const agregarReserva = async (formulario) => {
 const obtenerReserva = async (id) => {
     let res = await fetch(`reservas/data.php?id=${id}`);
     let response = await res.json();
-    
+
     document.getElementById("idAct").value = response.id;
-    document.getElementById("id_servicio_categoriaAct").value = response.id_servicio_categoria; 
-    document.getElementById("id_servicio_subcategoriaAct").value = response.id_servicio_subcategoria; 
-    document.getElementById("id_clienteAct").value = response.id_cliente; 
-    document.getElementById("num_personasAct").value = response.num_personas; 
-    document.getElementById("fecha_reservaAct").value = response.fecha_reserva; 
-    document.getElementById("estadoAct").value = 1; 
-    
+    document.getElementById("id_servicio_categoriaAct").value = response.id_servicio_categoria;
+    document.getElementById("id_servicio_subcategoriaAct").value = response.id_servicio_subcategoria;
+    document.getElementById("id_clienteAct").value = response.id_cliente;
+    document.getElementById("num_personasAct").value = response.num_personas;
+    document.getElementById("fecha_reservaAct").value = response.fecha_reserva;
+    document.getElementById("estadoAct").value = 1;
+
 }
 
 const actualizarReserva = async (formulario) => {
@@ -343,10 +343,35 @@ const actualizarReserva = async (formulario) => {
         alertaPersonalizada("success", response[1])
         $("#updateModal").modal("hide");
         setTimeout(() => {
-            CargarContenido('content-wrapper',"reservas/tabla_reservas.php");
+            CargarContenido('content-wrapper', "reservas/tabla_reservas.php");
         }, 500);
     } else {
         alertaPersonalizada("error", response[1])
+    }
+
+}
+
+
+const arrayBufferToPDF = (idContainer, arrayBuffer) => {
+    document.getElementById(idContainer).innerHTML = "";
+    let blob = new Blob([arrayBuffer], { type: "application/pdf" });
+    let blobUrl = URL.createObjectURL(blob);
+    let iframe = document.createElement("iframe");
+    iframe.src = blobUrl;
+    iframe.width = "100%";
+    iframe.height = "500px";
+    document.getElementById(idContainer).appendChild(iframe);
+  };
+
+
+const generarPdf = async (idReserva) => {
+    try {
+        console.log('idReserva :>> ', idReserva);
+        const response = await fetch(`../templatesPDF/capacitacion.php?id=${idReserva}`);
+        const arrayBuffer = await response.arrayBuffer();
+        arrayBufferToPDF("pdfReserva", arrayBuffer);
+    } catch (error) {
+        console.error(error);
     }
 
 }
