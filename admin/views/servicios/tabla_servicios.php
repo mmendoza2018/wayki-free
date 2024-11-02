@@ -7,8 +7,8 @@ $servicios = mysqli_query($conexion, "SELECT * FROM servicios WHERE estado_servi
 <div>
 
     <div class="table-responsive mt-3 px-3">
-        <table class="table table-sm table table-hover">
-            <thead class="table-dark">
+        <table class="table table-striped table-bordered" id="tablaCustom">
+            <thead class="table-dark" id="">
                 <tr>
                     <th>#</th>
                     <th>Descripcion</th>
@@ -66,3 +66,9 @@ $servicios = mysqli_query($conexion, "SELECT * FROM servicios WHERE estado_servi
     </div>
 
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#tablaCustom').DataTable();
+    });
+</script>

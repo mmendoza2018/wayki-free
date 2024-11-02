@@ -377,3 +377,40 @@ const generarPdf = async (idReserva) => {
 }
 
 /* fin servicios  */
+
+/* login */
+
+const autentication = async (formulario) => {
+    event.preventDefault();
+    if (!validarFormulario(formulario.getAttribute("id"))) return toastPersonalizado("warning", "Complete todos los campos");
+    let data = new FormData(formulario);
+
+    let res = await fetch("admin/login.php", { method: "POST", body: data });
+    let response = await res.json();
+
+    if (response[0]) {
+        alertaPersonalizada("success", response[1])
+        setTimeout(() => {
+            location.href = "admin/views/admin.php";
+        }, 1100);
+    } else {
+        alertaPersonalizada("error", response[1])
+    }
+
+}
+
+
+const sendEmail = async (idReserva) => {
+    try {
+        const response = await fetch(`../envio_reserva/send.php?id=${idReserva}`);
+        const data = await response.json();
+        if (data[0]) {
+            alertaPersonalizada("success", data[1])
+        } else {
+            alertaPersonalizada("error", data[1])
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+}

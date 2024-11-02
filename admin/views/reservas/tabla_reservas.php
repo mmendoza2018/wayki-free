@@ -17,7 +17,7 @@ $reservas = mysqli_query($conexion, $sql);
 <div>
 
     <div class="table-responsive mt-3 px-3">
-        <table class="table table-sm table table-hover">
+        <table class="table table-striped table-bordered" id="tablaCustom">
             <thead class="table-dark">
                 <tr>
                     <th>#</th>
@@ -39,9 +39,14 @@ $reservas = mysqli_query($conexion, $sql);
                         <td><?= $reserva["num_personas"] ?></td>
                         <td><?= $reserva["fecha_registro"] ?></td>
                         <td>
-                            <a href="#" data-toggle="modal" data-target="#updateModal" onclick="obtenerReserva('<?= $reserva['idReserva'] ?>')" class="btn btn-warning">Actualizar</a>
+                            <a href="#" data-toggle="modal" data-target="#updateModal" onclick="obtenerReserva('<?= $reserva['idReserva'] ?>')" class="btn btn-warning">
+                                Actualizar
+                            </a>
                             <a href="#" data-toggle="modal" data-target="#pdfModal" onclick="generarPdf('<?= $reserva['idReserva'] ?>')" class="btn btn-danger">
-                            <i class="fa-solid fa-file"></i>
+                                <i class="fa-solid fa-file"></i>
+                            </a>
+                            <a href="#" onclick="sendEmail('<?= $reserva['idReserva'] ?>')" class="btn btn-primary">
+                            <i class="fa-solid fa-envelope-circle-check"></i>
                             </a>
                         </td>
                     </tr>
@@ -120,7 +125,7 @@ $reservas = mysqli_query($conexion, $sql);
                     </button>
                 </div>
                 <div class="modal-body" id="pdfReserva">
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -130,3 +135,9 @@ $reservas = mysqli_query($conexion, $sql);
     </div>
 
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#tablaCustom').DataTable();
+    });
+</script>

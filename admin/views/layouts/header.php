@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Verificar si existe la variable de sesión
+if (!isset($_SESSION['user_autenticate'])) {
+  // Redirigir al inicio si no existe la sesión
+  header("Location: ../../");
+  exit();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +26,15 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Incluye los estilos de Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Incluye el estilo de DataTables con integración a Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+
+
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -28,41 +50,21 @@
         <!-- <li class="nav-item d-none d-sm-inline-block">
           <a href="user.php" class="nav-link">Reporte</a>
         </li> -->
-        <!--li class="nav-item d-none d-sm-inline-block">
-          <a href="index.php" class="nav-link">Contact</a>
-        </li-->
       </ul>
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-        <!-- Navbar Search -->
-       <!--  <li class="nav-item">
-          <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-            <i class="fas fa-search"></i>
+        <li class="nav-item">
+          <a class="nav-link" href="../logout.php" role="button">
+            Cerra sesión <i class="fa-solid fa-lock"></i>
           </a>
-          <div class="navbar-search-block">
-            <form class="form-inline">
-              <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                  <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                  </button>
-                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </li> -->
-
+        </li>
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
         </li>
-      
+
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -70,7 +72,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="grafica2.php" class="brand-link">
+      <a href="#" class="brand-link">
         <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Admin WaykiBot</span>
       </a>

@@ -1,97 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot WaykiBot</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Wayky</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/global.css">
 </head>
-<style>
 
-</style>
-
-<body>
-
-    <div class="container-chatbot">
-
-        <div class="subcontainer-chatbot">
-
-            <i class="fa-brands fa-rocketchat fa-xl" style="color: rgba(191,144,0,1)" onclick="mostrarChat()"></i>
-
-            <!-- chatbot  -->
-            <div class="wrapper" id="chatGlobal">
-                <form id="formChatBot">
-                <div class="title">
-                    <h2>ChatBot WaykiBot</h2>
-                    <i class="fa-solid fa-circle-xmark fa-lg" onclick="ocultarChat()"></i>
+<body class="bg-login">
+    <div class="loader-page" style="visibility: hidden; opacity: 0;"></div>
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="col-xs-5 col-lg-4 col-md-8 col-sm-12 card-login shadow bg-dark p-3 rounded-3">
+            <form class="d-flex flex-column" onsubmit="autentication(this)" id="formLogin">
+                <img src="assets/logo.png" class="mx-auto img-fluid" alt="gyt">
+                <marquee class="mx-2 text-uppercase my-2 text-white"> INGRESE SU USUARIO Y CONTRASEÑA </marquee>
+                <div class="input-group mt-3 input-g">
+                    <span class="input-group-text" id="basic-addon1"><i class="bx bxs-user"></i></span>
+                    <input type="text" class="form-control" data-validate name="user" placeholder="Usuario" aria-label="Username" aria-describedby="basic-addon1"><br>
                 </div>
-                <div class="form">
-                    <div class="bot-inbox inbox">
-                        <div class="icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="msg-header">
-                            <p>Hola, ¿cómo puedo ayudarte?, si deseas reservar dale click a nuestro boton,
-                                si deseas consultar inicia el chat con nuestro WaykiBot
-                            </p>
-                            <br>
-                            <!-- <a href="registrar_1.php" class="boton-redireccion">Reservar</a> -->
-                        </div>
-
-                    </div>
+                <div class="input-group mt-3">
+                    <span class="input-group-text verContra" id="basic-addon1"><a href="#" class="text-dark"><i class="bx bxs-low-vision"></i></a></span>
+                    <input type="password" id="verContra" data-validate name="password" class="form-control" placeholder="Contraseña" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
-                <div class="typing-field">
-                    <div class="input-data">
-                        <input id="data" type="text" placeholder="Escribe algo aquí.." required>
-                        <button id="send-btn" type="submit">Enviar</button>
-                    </div>
-                </div>
-                </form>
-            </div>
-            <!-- fin chatbot  -->
-
+                <button class="btn btn-secondary mt-3" type="submit" id="envioLogin">Ingresar</button>
+            </form>
         </div>
     </div>
-
-    <script src="funciones.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#formChatBot").on("submit", function(e) {
-                e.preventDefault();
-                $value = $("#data").val();
-                $msg = '<div class="user-inbox inbox"><div class="msg-header"><p>' + $value + '</p></div></div>';
-                $(".form").append($msg);
-                $("#data").val('');
-
-                // iniciar el código ajax
-                $.ajax({
-                    url: 'message.php',
-                    type: 'POST',
-                    data: 'text=' + $value,
-                    success: function(result) {
-                        console.log('result :>> ', JSON.parse(result));
-                        let { texto, fin_conversacion, destino_id, tipo_destino } = JSON.parse(result);
-                        let btnReserva = ``;
-                        console.log('destino_id :>> ', destino_id);
-                        if (fin_conversacion == "1") {
-                            btnReserva = `<a class="btn" style="background-color: #fd7d1c" href="registrar_vista.php?destino_id=${destino_id}&tipo_destino=${tipo_destino}" >Reservar</a>`;
-                        }
-                        $replay = `<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p> ${texto} </p>
-                        ${btnReserva}</div></div>`;
-
-                        $(".form").append($replay);
-                        // cuando el chat baja, la barra de desplazamiento llega automáticamente al final
-                        $(".form").scrollTop($(".form")[0].scrollHeight);
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="admin/views/dist/js/personalizado.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 

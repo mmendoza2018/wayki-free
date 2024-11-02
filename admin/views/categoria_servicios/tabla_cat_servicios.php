@@ -10,7 +10,7 @@ $serviciosCategorias = mysqli_query($conexion, $sql);
 <div>
 
     <div class="table-responsive mt-3 px-3">
-        <table class="table table-sm table table-hover">
+        <table class="table table-striped table-bordered" id="tablaCustom">
             <thead class="table-dark">
                 <tr>
                     <th>#</th>
@@ -88,3 +88,9 @@ $serviciosCategorias = mysqli_query($conexion, $sql);
     </div>
 
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#tablaCustom').DataTable();
+    });
+</script>

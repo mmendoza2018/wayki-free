@@ -1,20 +1,20 @@
 <?php 
 
 $conexion = mysqli_connect("localhost", "root", "", "waiky");
-$serviciosCat = mysqli_query($conexion, "SELECT * FROM servicios_categorias");
+$servicios = mysqli_query($conexion, "SELECT * FROM servicios");
 
 ?>
 
-<div class="col-sm-5 mx-auto">
+<div class="col-sm-4 mx-auto card p-4">
     <h5 class="text-center">Agregar registros</h5>
-    <form id="formServiciosAdd" onsubmit="agregarSubCategoriaServicio(this)">
+    <form id="formServiciosAdd" onsubmit="agregarCategoriaServicio(this)">
         <label for="">Titulo</label>
         <input type="text" class="form-control mb-1" name="titulo" data-validate>
         <label for="">Servicio</label>
-        <select name="servicio_cat_id" class="form-control mb-1" data-validate>
+        <select name="servicio_id" id="" class="form-control mb-1" data-validate>
             <option value="" selected disabled>Seleccione...</option>
-            <?php foreach ($serviciosCat as $servicio) : ?>
-                <option value="<?= $servicio["id"] ?>"><?= $servicio["titulo"] ?></option>
+            <?php foreach ($servicios as $servicio) : ?>
+                <option value="<?= $servicio["id"] ?>"><?= $servicio["descripcion"] ?></option>
             <?php endforeach ?>
         </select>
         <label for="">Descripcion</label>

@@ -1,4 +1,4 @@
-<div class="col-sm-5 mx-auto">
+<div class="col-sm-4 mx-auto card p-4">
     <h5 class="text-center">Agregar registros</h5>
     <form id="formClientesAdd" onsubmit="agregarCliente(this)">
         <label for="">Nombres</label>

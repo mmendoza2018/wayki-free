@@ -2,12 +2,12 @@
 
 $conexion = mysqli_connect("localhost", "root", "", "waiky");
 $serviciosCat = mysqli_query($conexion, "SELECT * FROM servicios_categorias");
-$clientes = mysqli_query($conexion, "SELECT * FROM clientes");
+$clientes = mysqli_query($conexion, "SELECT * FROM clientes WHERE estado_cliente = 1");
 $serviciosSubCat = mysqli_query($conexion, "SELECT * FROM servicios_subcategorias");
 
 ?>
 
-<div class="col-sm-5 mx-auto">
+<div class="col-sm-4 mx-auto card p-4">
     <h5 class="text-center">Agregar registros</h5>
     <form id="formServiciosAdd" onsubmit="agregarReserva(this)">
         <label for="">Servicio categoria</label>
